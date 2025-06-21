@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gen AI Leader's Playbook: A Manager's Guide to Development Workflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F7FF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            color: #4361EE;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .flow-card {
+            border: 1px solid #004AAD;
+            transition: all 0.3s ease-in-out;
+        }
+        .flow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(67, 97, 238, 0.2), 0 4px 6px -2px rgba(67, 97, 238, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+    <header class="bg-white sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-[#004AAD]">The Gen AI Leader's Playbook</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#phase1" class="hover:text-[#4361EE] transition">Phase 1: Strategy</a>
+                    <a href="#phase2" class="hover:text-[#4361EE] transition">Phase 2: Design</a>
+                    <a href="#phase3" class="hover:text-[#4361EE] transition">Phase 3: Build</a>
+                    <a href="#phase4" class="hover:text-[#4361EE] transition">Phase 4: Run</a>
+                    <a href="#phase5" class="hover:text-[#4361EE] transition">Phase 5: Trust</a>
+                    <a href="#use-cases" class="hover:text-[#4361EE] transition">Use Cases</a>
+                    <a href="#executive-view" class="hover:text-[#4361EE] transition">Executive View</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="text-center py-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004AAD]">Navigating the Gen AI Revolution</h1>
+            <p class="mt-2 text-lg font-semibold text-slate-600">Authored by Nilesh Gode - Manager Data Science</p>
+            <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">A structured workflow is critical for the managers to transform complex Generative AI potential into tangible, responsible, and strategic business value. This guide outlines the complete lifecycle from a manager's perspective.</p>
+            <p class="mt-4 text-sm text-slate-500 max-w-3xl mx-auto italic">This workflow is based on current experiences. While such insights are valuable, each individual's experience is unique and adds distinct value to this evolving field.</p>
+        </section>
+
+        <section id="phase1" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Phase 1: Strategic Planning & Feasibility</h2>
+                <p class="mt-2 text-slate-600">The foundation of any successful Gen AI project is a robust strategy. As a manager, your primary role is to ensure the initiative is not just technically possible, but also valuable, viable, and aligned with core business objectives. This phase is about asking "Why?" and "What?" before diving into "How?".</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Key Strategic Considerations</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">A balanced focus is crucial. Business value must lead, supported by technical feasibility, diligent risk management, and realistic resource planning. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="strategyDonutChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Initial Foundational Model Analysis</h3>
+                         <p class="text-sm text-center text-slate-500 mb-4">Early analysis involves trade-offs between cost, performance, and flexibility. Proprietary models often offer higher performance out-of-the-box, while open-source models provide greater control and customization. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="modelBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4">Tools for Strategic Planning & Feasibility</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Market & Feasibility Research:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Gartner</span>, <span class="font-bold text-[#4361EE]">Forrester</span>, various industry reports.</li>
+                                <li>Managerial Preference: Rely on a combination of reputable market research firms and open-source intelligence. Gartner/Forrester provide high-level strategic insights, but also encourage internal data analysts to conduct competitive landscaping using publicly available information and news feeds to ensure a well-rounded view and identify niche opportunities not covered by general reports.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="marketResearchRadarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Market Research Firms vs. Internal Analysts/OSINT across multiple dimensions. Internal efforts offer higher customization and timeliness, while firms provide established depth. (Illustrative Data)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Cost-Benefit Analysis & Resource Estimation:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Microsoft Excel/Google Sheets</span> (for custom models), Cloud Provider Calculators (e.g., <span class="font-bold text-[#4361EE]">AWS Cost Explorer</span>, <span class="font-bold text-[#4361EE]">Azure Pricing Calculator</span>, <span class="font-bold text-[#4361EE]">Google Cloud Pricing Calculator</span>), <span class="font-bold text-[#4361EE]">Internal Financial Modeling Tools</span>.</li>
+                                <li>Managerial Preference: Start with cloud provider calculators for initial estimates of foundation model API costs and basic compute. For custom models, combine these with internal financial models in Google Sheets/Excel for detailed TCO and ROI projections, ensuring collaboration with finance teams.</li>
+                            </ul>
+                             <div class="chart-container mt-4">
+                                <canvas id="costAnalysisBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Cloud Calculators vs. Internal Financial Models on accuracy, customization, and ease of use. Internal models offer superior customization and accuracy for complex scenarios. (Illustrative Data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="phase2" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Phase 2: Design & Prototyping</h2>
+                <p class="mt-2 text-slate-600">This phase translates the "what" from strategy into the "how" of execution. The manager's role shifts to overseeing the creation of a scalable architecture and a data strategy that will fuel the AI. Prototyping and early feedback are vital to validate assumptions before committing to full-scale development.</p>
+                <div class="mt-8 w-full">
+                    <h3 class="text-xl font-semibold text-center">Core Architecture Patterns: RAG vs. Fine-Tuning</h3>
+                    <p class="text-sm text-center text-slate-500 mb-6 max-w-2xl mx-auto">The choice between Retrieval-Augmented Generation (RAG) and Fine-Tuning is a key architectural decision. RAG grounds the model in your specific data for factual accuracy, while fine-tuning adapts the model's behavior and style. Often, a hybrid approach yields the best results.</p>
+                    <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-8">
+                        <div class="text-center p-6 border-2 border-dashed border-[#4361EE] rounded-xl w-full md:w-2/5">
+                            <h4 class="font-bold text-lg text-[#004AAD]">Retrieval-Augmented Generation (RAG)</h4>
+                            <div class="mt-4 space-y-2 text-left">
+                                <p>1. User Query Received</p>
+                                <p class="text-center text-3xl text-[#4361EE]">&darr;</p>
+                                <p>2. Retrieve Relevant Data from Vector DB</p>
+                                <p class="text-center text-3xl text-[#4361EE]">&darr;</p>
+                                <p>3. Augment Prompt with Data + Query</p>
+                                 <p class="text-center text-3xl text-[#4361EE]">&darr;</p>
+                                <p>4. Send to Foundation Model</p>
+                            </div>
+                        </div>
+                        <div class="font-bold text-2xl text-[#004AAD]">VS</div>
+                         <div class="text-center p-6 border-2 border-dashed border-[#4CC9F0] rounded-xl w-full md:w-2/5">
+                            <h4 class="font-bold text-lg text-[#004AAD]">Fine-Tuning</h4>
+                            <div class="mt-4 space-y-2 text-left">
+                                <p>1. Prepare Curated Dataset (prompt-response pairs)</p>
+                                <p class="text-center text-3xl text-[#4CC9F0]">&darr;</p>
+                                <p>2. Train Foundation Model on Dataset</p>
+                                <p class="text-center text-3xl text-[#4CC9F0]">&darr;</p>
+                                <p>3. Create New, Specialized Model</p>
+                                 <p class="text-center text-3xl text-[#4CC9F0]">&darr;</darr>
+                                <p>4. Send User Query Directly to New Model</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4">Tools for Design & Prototyping</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Solution Architecture & Prototyping:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Draw.io/Lucidchart</span> (for diagrams), <span class="font-bold text-[#4361EE]">Figma/Sketch</span> (for UI/UX prototyping), <span class="font-bold text-[#4361EE]">Streamlit/Gradio</span> (for rapid AI app prototyping), Cloud Provider AI services (e.g., <span class="font-bold text-[#4361EE]">Google Cloud Vertex AI Workbench</span>, <span class="font-bold text-[#4361EE]">Azure Machine Learning Studio</span>).</li>
+                                <li>Managerial Preference: For high-level architectural diagrams, Draw.io or Lucidchart are sufficient. For AI-specific prototyping, <span class="font-bold text-[#4361EE]">Streamlit</span> or <span class="font-bold text-[#4361EE]">Gradio</span> are highly recommended due to their speed in turning Python scripts into interactive web apps, ideal for quick iteration and stakeholder demos. For enterprise-grade prototyping, integrated cloud AI platforms like <span class="font-bold text-[#4361EE]">Vertex AI Workbench</span> or <span class="font-bold text-[#4361EE]">Azure ML Studio</span> offer more robust environments and easier transitions to production.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="protoToolsRadarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Rapid Prototyping Tools (Streamlit/Gradio) vs. Cloud AI Workbenches on Speed, Scalability, and Enterprise Readiness. Rapid tools excel in speed, while cloud workbenches offer greater enterprise features. (Illustrative Data)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Data Strategy & Vector Databases (for RAG):</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Python (Pandas, NumPy for data processing)</span>, <span class="font-bold text-[#4361EE]">Data Version Control (DVC)</span>, Vector Databases (<span class="font-bold text-[#4361EE]">Pinecone</span>, <span class="font-bold text-[#4361EE]">Weaviate</span>, <span class="font-bold text-[#4361EE]">Milvus</span>).</li>
+                                <li>Managerial Preference: For data processing and preparation, <span class="font-bold text-[#4361EE]">Python with Pandas/NumPy</span> remains standard. For vector databases in a RAG setup, <span class="font-bold text-[#4361EE]">Pinecone</span> is often preferred for its fully managed service and scalability, reducing operational overhead. Weaviate and Milvus offer more control for specific use cases but require more setup. Ensure <span class="font-bold text-[#4361EE]">DVC</span> is used for data versioning to track data changes alongside code.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="vectorDBBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Pinecone (Managed) vs. Self-Managed (Weaviate/Milvus) vector databases on ease of management, control, and scalability features. (Illustrative Data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="phase3" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Phase 3: Development & Customization</h2>
+                <p class="mt-2 text-slate-600">Here, the team builds and refines the application. As a manager, you must ensure quality control, resource allocation, and seamless team coordination. The focus is on iterative testing and evaluation to create a robust and reliable system, with a strong emphasis on fairness and safety.</p>
+                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Multi-Faceted Model Evaluation</h3>
+                         <p class="text-sm text-center text-slate-500 mb-4">Evaluating a Gen AI model goes beyond simple accuracy. It requires a holistic view, balancing performance, safety, fairness, and user experience. The goal is to see measurable improvement across all facets as the model is refined. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="evaluationRadarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-[#F7F7FF] p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-[#004AAD] mb-4">Manager's Build-Phase Checklist:</h3>
+                        <ul class="space-y-3 list-disc list-inside">
+                           <li><span class="font-semibold">Team Coordination:</span> Are AI, software, and data teams collaborating effectively?</li>
+                           <li><span class="font-semibold">Resource Allocation:</span> Are GPU resources and cloud budgets being managed efficiently?</li>
+                           <li><span class="font-semibold">Guardrail Development:</span> Have we implemented robust safety mechanisms to filter harmful content?</li>
+                           <li><span class="font-semibold">Evaluation Framework:</span> Is our blend of automated and human testing providing a clear picture of model quality?</li>
+                           <li><span class="font-semibold">Bias & Fairness Audits:</span> Are we proactively testing for and mitigating biases in model outputs?</li>
+                           <li><span class="font-semibold">Security Integration:</span> Is security being treated as a core part of the development process, not an afterthought?</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4">Tools for Development & Customization</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Model Training & Fine-Tuning:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">PyTorch</span>, <span class="font-bold text-[#4361EE]">TensorFlow</span>, <span class="font-bold text-[#4361EE]">Hugging Face Transformers</span>, <span class="font-bold text-[#4361EE]">Keras</span>.</li>
+                                <li>Managerial Preference: <span class="font-bold text-[#4361EE]">Hugging Face Transformers</span> is often the preferred choice for fine-tuning pre-trained models due to its extensive library of models, ease of use, and strong community support. PyTorch and TensorFlow provide more granular control for custom model architectures.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="fineTuningRadarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Hugging Face Transformers vs. PyTorch/TensorFlow (direct) on Ease of Use, Flexibility, and Community Support for fine-tuning tasks. (Illustrative Data)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Prompt Engineering & Management:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">LangChain</span>, <span class="font-bold text-[#4361EE]">LlamaIndex</span>, <span class="font-bold text-[#4361EE]">Custom Python Scripts</span>.</li>
+                                <li>Managerial Preference: For orchestrating complex LLM workflows (chaining prompts, RAG, agents), <span class="font-bold text-[#4361EE]">LangChain</span> or <span class="font-bold text-[#4361EE]">LlamaIndex</span> are highly valuable. LangChain offers more versatility for general LLM application development, while LlamaIndex excels at data-centric LLM applications (specifically RAG).</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="promptEngBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Orchestration Frameworks (LangChain/LlamaIndex) vs. Custom Scripts on Complexity, Modularity, and Learning Curve for managing prompts. (Illustrative Data)</p>
+                        </div>
+                         <div class="lg:col-span-2">
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Evaluation & Guardrails:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">TruLens</span>, <span class="font-bold text-[#4361EE]">Google Cloud Responsible AI Toolkit</span>, <span class="font-bold text-[#4361EE]">Azure Content Safety</span>, <span class="font-bold text-[#4361EE]">custom evaluation scripts</span>.</li>
+                                <li>Managerial Preference: Implement a combination. For quantitative evaluation, custom scripts are often needed for specific metrics. For responsible AI, leverage <span class="font-bold text-[#4361EE]">Google Cloud Responsible AI Toolkit</span> or <span class="font-bold text-[#4361EE]">Azure Content Safety</span> for automated moderation and bias detection, while also investing in human-in-the-loop (HITL) review platforms for qualitative assessment and fine-tuning.</li>
+                            </ul>
+                             <div class="chart-container mt-4">
+                                <canvas id="evaluationGuardrailsBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Cloud AI Toolkits vs. Specialized Tools + HITL for evaluation and guardrail implementation, considering integration, depth, and human oversight. (Illustrative Data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="phase4" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Phase 4: Deployment & Operations</h2>
+                <p class="mt-2 text-slate-600">Launching the application is just the beginning. The "Run" phase is about ensuring reliability, scalability, and continuous improvement in a live environment. Your role as a manager is to oversee a robust MLOps strategy, establish comprehensive monitoring, and champion a culture of data-driven iteration based on user feedback.</p>
+                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                     <div>
+                        <h3 class="text-xl font-semibold text-center">Key Operational KPIs to Monitor</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">Effective operations requires monitoring both technical performance (latency) and business metrics (cost, user satisfaction). These KPIs provide a holistic view of the application's health and value delivery over time. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="opsLineChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="flow-card p-6 rounded-xl border-[#4361EE]">
+                        <h3 class="font-bold text-lg text-[#004AAD] mb-4">The Feedback & Improvement Loop</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-blue-50 rounded-lg">1. <span class="font-semibold">Deploy:</span> Release new model or feature via CI/CD pipeline.</div>
+                            <div class="text-center text-xl flow-arrow">&darr;</div>
+                             <div class="p-3 bg-blue-50 rounded-lg">2. <span class="font-semibold">Monitor:</span> Track performance, cost, and usage metrics.</div>
+                            <div class="text-center text-xl flow-arrow">&darr;</div>
+                             <div class="p-3 bg-blue-50 rounded-lg">3. <span class="font-semibold">Collect Feedback:</span> Gather quantitative and qualitative user feedback.</div>
+                            <div class="text-center text-xl flow-arrow">&darr;</div>
+                             <div class="p-3 bg-blue-50 rounded-lg">4. <span class="font-semibold">Re-evaluate & Retrain:</span> Use new data to retrain models and optimize prompts.</div>
+                              <div class="text-center text-xl flow-arrow -rotate-90 relative -top-32 -left-28 h-0 w-40"> &larr;</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4">Tools for Deployment & Operations</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For CI/CD & MLOps Pipelines:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">GitLab CI/CD</span>, <span class="font-bold text-[#4361EE]">GitHub Actions</span>, <span class="font-bold text-[#4361EE]">Jenkins</span>, <span class="font-bold text-[#4361EE]">Kubeflow</span>, <span class="font-bold text-[#4361EE]">MLflow</span>.</li>
+                                <li>Managerial Preference: For cloud-native deployments, <span class="font-bold text-[#4361EE]">Kubeflow</span> offers a comprehensive MLOps platform for orchestrating ML workflows on Kubernetes. For simpler CI/CD integrated with code, <span class="font-bold text-[#4361EE]">GitHub Actions</span> or <span class="font-bold text-[#4361EE]">GitLab CI/CD</span> are excellent choices for automation.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="mlopsRadarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Kubeflow/MLflow vs. GitHub Actions/GitLab CI/CD for MLOps and CI/CD pipelines across ML-specific features, ease of setup, and scalability. (Illustrative Data)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Infrastructure as Code (IaC) & Container Orchestration:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Terraform</span>, <span class="font-bold text-[#4361EE]">Kubernetes (K8s)</span>, <span class="font-bold text-[#4361EE]">Docker</span>.</li>
+                                <li>Managerial Preference: <span class="font-bold text-[#4361EE]">Terraform</span> is highly recommended for managing infrastructure across multiple cloud providers consistently. <span class="font-bold text-[#4361EE]">Kubernetes</span> with <span class="font-bold text-[#4361EE]">Docker</span> is the industry standard for deploying and scaling containerized AI applications, offering robust management and resource allocation.</li>
+                            </ul>
+                             <div class="chart-container mt-4">
+                                <canvas id="iacOrchestrationBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Terraform vs. Cloud-Native IaC and Kubernetes vs. Managed Container Services on cross-cloud compatibility, complexity, and flexibility. (Illustrative Data)</p>
+                        </div>
+                         <div class="lg:col-span-2">
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Monitoring & Observability:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Prometheus + Grafana</span>, <span class="font-bold text-[#4361EE]">Datadog</span>, Cloud-native monitoring (e.g., <span class="font-bold text-[#4361EE]">Google Cloud Operations</span>, <span class="font-bold text-[#4361EE]">AWS CloudWatch</span>), <span class="font-bold text-[#4361EE]">Arize AI</span> (for model monitoring).</li>
+                                <li>Managerial Preference: For comprehensive operational monitoring, a combination of <span class="font-bold text-[#4361EE]">Prometheus and Grafana</span> offers powerful open-source capabilities. For dedicated model performance and drift monitoring, <span class="font-bold text-[#4361EE]">Arize AI</span> provides specialized features that are critical for Gen AI. Integrated cloud-native monitoring solutions are also strong contenders for simplicity within a single cloud ecosystem.</li>
+                            </ul>
+                             <div class="chart-container mt-4">
+                                <canvas id="monitoringRadarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing various monitoring solutions on Cost, Comprehensiveness, and ML-specific capabilities. A hybrid approach often yields the best visibility. (Illustrative Data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="phase5" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Phase 5: Governance & Responsible AI (Trust)</h2>
+                <p class="mt-2 text-slate-600">Trust is not a feature; it's the bedrock of any successful AI implementation. This phase is not a final step but an ongoing, cross-cutting concern throughout the entire lifecycle. As a manager, you are the ultimate custodian of responsible AI, ensuring that the application operates ethically, securely, and in compliance with all legal and regulatory standards.</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Pillars of AI Trust & Governance</h3>
+                         <p class="text-sm text-center text-slate-500 mb-4">Building trust requires a multi-layered approach. While initial planning is key, the commitment to ethical guidelines, security, and compliance must intensify during development and become a core part of ongoing operations. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="governanceStackedBarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+                        <h3 class="font-bold text-lg text-red-800 mb-4">Critical Governance Questions for Managers:</h3>
+                        <ul class="space-y-3 list-disc list-inside text-red-900">
+                           <li><span class="font-semibold">Compliance:</span> Does our application adhere to all relevant regulations like GDPR, CCPA, and industry-specific rules?</li>
+                           <li><span class="font-semibold">Data Privacy:</span> How are we protecting sensitive user data, both in transit and at rest? How do we prevent PII leakage in outputs?</li>
+                           <li><span class="font-semibold">Intellectual Property:</span> What is our policy on the ownership of AI-generated content? Are we respecting copyright in our training data?</li>
+                           <li><span class="font-semibold">Transparency:</span> Can we explain, to a reasonable degree, why the model produced a certain output?</li>
+                           <li><span class="font-semibold">Accountability:</span> Who is accountable when the AI makes a mistake? What are our remediation processes?</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4">Tools for Governance & Responsible AI</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Responsible AI & Bias Detection:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: <span class="font-bold text-[#4361EE]">Google Cloud Responsible AI Toolkit</span>, <span class="font-bold text-[#4361EE]">IBM AI Fairness 360</span>, <span class="font-bold text-[#4361EE]">Microsoft Responsible AI Dashboard</span>, <span class="font-bold text-[#4361EE]">Fiddler AI</span>.</li>
+                                <li>Managerial Preference: For cloud-native deployments, <span class="font-bold text-[#4361EE]">Google Cloud Responsible AI Toolkit</span> or <span class="font-bold text-[#4361EE]">Microsoft Responsible AI Dashboard</span> integrate well with their respective ecosystems and provide structured approaches to address fairness, interpretability, and safety. Specialized tools like <span class="font-bold text-[#4361EE]">Fiddler AI</span> offer more advanced capabilities for deeper analysis.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="responsibleAIBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing Cloud Responsible AI Toolkits vs. Specialized Fairness Tools on ease of integration, depth of analysis, and reporting capabilities for bias detection. (Illustrative Data)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#004AAD]">For Security & Data Governance:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                                <li>Tools: Data Loss Prevention (DLP) solutions (e.g., <span class="font-bold text-[#4361EE]">Google Cloud DLP</span>, <span class="font-bold text-[#4361EE]">Microsoft Purview</span>), Vulnerability Scanners (e.g., <span class="font-bold text-[#4361EE]">Snyk</span>, <span class="font-bold text-[#4361EE]">Trivy</span>), <span class="font-bold text-[#4361EE]">Identity and Access Management (IAM) systems</span>.</li>
+                                <li>Managerial Preference: Prioritize robust <span class="font-bold text-[#4361EE]">DLP solutions</span> to prevent sensitive data leakage. Integrate strong <span class="font-bold text-[#4361EE]">IAM practices</span> to ensure least privilege access to models and data. Regular use of <span class="font-bold text-[#4361EE]">vulnerability scanners</span> is also critical for proactive security.</li>
+                            </ul>
+                            <div class="chart-container mt-4">
+                                <canvas id="securityGovernanceBarChart"></canvas>
+                            </div>
+                            <p class="text-sm text-center text-slate-500 mt-2">Comparing DLP Solutions vs. Vulnerability Scanners vs. IAM Systems on their primary focus areas for security and data governance in Gen AI applications. (Illustrative Data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">Key Generative AI Use Cases</h2>
+                <p class="mt-2 text-slate-600">Generative AI is transforming industries by enabling automated content creation, personalized experiences, and intelligent automation. Here are some prominent use cases, illustrating the diverse applications of Gen AI:</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Content Creation & Marketing</h4>
+                        <p class="text-sm text-slate-600">Automate blog posts, social media updates, marketing copy, product descriptions, and ad creatives, significantly reducing time-to-market for campaigns.</p>
+                    </div>
+                    <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Personalized Customer Experience</h4>
+                        <p class="text-sm text-slate-600">Generate personalized emails, chatbots for customer support, dynamic website content, and tailored recommendations based on individual user behavior.</p>
+                    </div>
+                    <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Software Development & Code Generation</h4>
+                        <p class="text-sm text-slate-600">Assist developers by generating code snippets, translating between programming languages, auto-completing code, and creating unit tests.</p>
+                    </div>
+                     <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Data Augmentation & Synthetic Data</h4>
+                        <p class="text-sm text-slate-600">Create synthetic datasets to train other AI models, particularly useful where real data is scarce, sensitive, or costly to acquire (e.g., medical imaging, financial fraud). Ensures privacy and fills data gaps.</p>
+                    </div>
+                    <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Design & Art Generation</h4>
+                        <p class="text-sm text-slate-600">Generate unique images, illustrations, logos, 3D models, and even architectural designs based on text prompts or existing styles, accelerating creative workflows.</p>
+                    </div>
+                    <div class="p-6 bg-[#F7F7FF] rounded-lg shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-[#004AAD] mb-2">Research & Development Acceleration</h4>
+                        <p class="text-sm text-slate-600">Accelerate scientific discovery by generating novel molecular structures, predicting material properties, or synthesizing new drug compounds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="executive-view" class="py-12 scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD]">The Executive View: Strategic Insights for Gen AI</h2>
+                <p class="mt-2 text-slate-600">Understanding the broader landscape from a leadership perspective is crucial for effective Gen AI strategy. These insights highlight the current state of adoption, perceived business impacts, and common challenges at the organizational level.</p>
+                <p class="mt-4 text-sm text-red-700 font-semibold">Note: The statistics and data presented in the charts within this "Executive View" section are illustrative and hypothetical. For real-world applications, it is essential to replace them with actual data from reputable industry reports, market research, or internal analytics.</p>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Gen AI Adoption Trend (Q4 2023 - Q1 2025)</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">The adoption of Generative AI across enterprises is rapidly accelerating, moving from early exploration to widespread implementation, driven by clear business value propositions. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="adoptionLineChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Top Business Impacts Expected from Gen AI</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">Executives anticipate significant positive impacts across various business functions, with efficiency gains and innovation leading the way. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="businessImpactsBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center">Key Hurdles to Gen AI Adoption</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">Despite the potential, organizations face substantial challenges in fully integrating and operationalizing Gen AI at scale. (Illustrative Data)</p>
+                        <div class="chart-container">
+                            <canvas id="adoptionHurdlesDonutChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-[#F7F7FF] p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-[#004AAD] mb-4">Managerial Focus Areas for Strategic Success:</h3>
+                        <ul class="space-y-3 list-disc list-inside">
+                           <li><span class="font-semibold">Talent Development:</span> Invest in upskilling and reskilling teams for Gen AI capabilities.</li>
+                           <li><span class="font-semibold">Data Governance:</span> Prioritize clean, well-managed, and ethically sourced data pipelines.</li>
+                           <li><span class="font-semibold">Pilot Programs:</span> Start with targeted, high-impact pilot projects to demonstrate ROI and build internal champions.</li>
+                           <li><span class="font-semibold">Cross-Functional Collaboration:</span> Foster strong partnerships between AI, business, legal, and IT departments.</li>
+                           <li><span class="font-semibold">Ethical AI Frameworks:</span> Establish clear guidelines and oversight for responsible development and deployment.</li>
+                           <li><span class="font-semibold">Scalable Infrastructure:</span> Ensure cloud and compute resources can meet future demand.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#004AAD] text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Gen AI Leader's Playbook. All Rights Reserved.</p>
+        <p class="text-sm opacity-80 mt-1">Infographic for illustrative purposes only. All statistical data presented in charts throughout this document is hypothetical and should be replaced with real-world, sourced data for any practical application.</p>
+        <p class="text-sm mt-1">Authored by Nilesh Gode - Manager Data Science</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (str, maxWidth) => {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const defaultTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const colors = {
+            darkBlue: '#004AAD',
+            royalBlue: '#4361EE',
+            lightBlue: '#4CC9F0',
+            aqua: '#72EFDD',
+            textColor: '#2D3748',
+        };
+
+        const strategyDonutCtx = document.getElementById('strategyDonutChart').getContext('2d');
+        new Chart(strategyDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Business Value', 'Technical Feasibility', 'Risk & Compliance', 'Resource Planning'],
+                datasets: [{
+                    label: 'Strategic Focus',
+                    data: [40, 25, 20, 15],
+                    backgroundColor: [colors.darkBlue, colors.royalBlue, colors.lightBlue, colors.aqua],
+                    borderColor: '#F7F7FF',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                }
+            }
+        });
+        
+        const modelBarCtx = document.getElementById('modelBarChart').getContext('2d');
+        new Chart(modelBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Model A (Proprietary)', 'Model B (Proprietary)', 'Model C (Open Source)'].map(l => wrapLabel(l, 16)),
+                datasets: [
+                    {
+                        label: 'Performance',
+                        data: [9, 8, 7],
+                        backgroundColor: colors.darkBlue,
+                    },
+                    {
+                        label: 'Flexibility',
+                        data: [5, 6, 9],
+                        backgroundColor: colors.royalBlue,
+                    },
+                    {
+                        label: 'Cost Efficiency',
+                        data: [6, 7, 9],
+                        backgroundColor: colors.lightBlue,
+                    }
+                ]
+            },
+            options: {
+                 ...defaultTooltipOptions,
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: { display: true, text: 'Score (out of 10)'}
+                    }
+                },
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: {
+                        position: 'bottom'
+                    },
+                },
+                indexAxis: 'y',
+            }
+        });
+        
+        const evaluationRadarCtx = document.getElementById('evaluationRadarChart').getContext('2d');
+        new Chart(evaluationRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Accuracy', 'Fairness', 'Coherence', 'Safety', 'Latency'],
+                datasets: [{
+                    label: 'Model v1.0',
+                    data: [7, 6, 8, 7, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                    borderColor: colors.royalBlue,
+                    pointBackgroundColor: colors.royalBlue,
+                }, {
+                    label: 'Model v1.1 (Refined)',
+                    data: [8, 8, 9, 9, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }]
+            },
+             options: {
+                 ...defaultTooltipOptions,
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                        pointLabels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const opsLineCtx = document.getElementById('opsLineChart').getContext('2d');
+        new Chart(opsLineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+                datasets: [{
+                    label: 'Latency (ms)',
+                    data: [350, 320, 280, 290, 250, 260, 240, 220],
+                    borderColor: colors.darkBlue,
+                    backgroundColor: 'rgba(0, 74, 173, 0.1)',
+                    yAxisID: 'y',
+                    tension: 0.3,
+                }, {
+                    label: 'User Satisfaction (%)',
+                    data: [75, 78, 80, 82, 85, 84, 88, 90],
+                    borderColor: colors.lightBlue,
+                     backgroundColor: 'rgba(76, 201, 240, 0.1)',
+                    yAxisID: 'y1',
+                    tension: 0.3,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                         title: { display: true, text: 'Latency (ms)'}
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        title: { display: true, text: 'Satisfaction (%)'},
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    },
+                },
+                 plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                }
+            }
+        });
+        
+        const governanceStackedBarCtx = document.getElementById('governanceStackedBarChart').getContext('2d');
+        new Chart(governanceStackedBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ethical Guidelines', 'Security Protocols', 'Regulatory Compliance', 'Legal Review'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Initial Planning',
+                    data: [4, 3, 4, 3],
+                    backgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Development',
+                    data: [3, 4, 3, 4],
+                    backgroundColor: colors.royalBlue,
+                }, {
+                    label: 'Ongoing Operations',
+                    data: [3, 3, 3, 3],
+                    backgroundColor: colors.darkBlue,
+                }]
+            },
+            options: {
+                 ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, title: { display: true, text: 'Effort Allocation (Units)'} }
+                },
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                }
+            }
+        });
+
+
+        // New charts for tools sections
+        const marketResearchRadarCtx = document.getElementById('marketResearchRadarChart').getContext('2d');
+        new Chart(marketResearchRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Depth of Insight', 'Cost', 'Timeliness', 'Customization'],
+                datasets: [{
+                    label: 'Market Research Firms',
+                    data: [9, 3, 5, 4],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }, {
+                    label: 'Internal Analysts/OSINT',
+                    data: [6, 8, 9, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                    borderColor: colors.royalBlue,
+                    pointBackgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { r: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const costAnalysisBarCtx = document.getElementById('costAnalysisBarChart').getContext('2d');
+        new Chart(costAnalysisBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Accuracy', 'Customization', 'Ease of Use'],
+                datasets: [{
+                    label: 'Cloud Calculators',
+                    data: [6, 5, 8],
+                    backgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Internal Financial Models',
+                    data: [9, 9, 6],
+                    backgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { y: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const protoToolsRadarCtx = document.getElementById('protoToolsRadarChart').getContext('2d');
+        new Chart(protoToolsRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Speed of Prototyping', 'Scalability', 'Enterprise Readiness', 'Integration'],
+                datasets: [{
+                    label: 'Streamlit/Gradio',
+                    data: [9, 5, 4, 6],
+                    fill: true,
+                    backgroundColor: 'rgba(76, 201, 240, 0.2)',
+                    borderColor: colors.lightBlue,
+                    pointBackgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Cloud AI Workbenches',
+                    data: [6, 8, 9, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { r: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const vectorDBBarCtx = document.getElementById('vectorDBBarChart').getContext('2d');
+        new Chart(vectorDBBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Managed Service', 'Control', 'Scalability', 'Cost'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Pinecone',
+                    data: [9, 6, 8, 7],
+                    backgroundColor: colors.royalBlue,
+                }, {
+                    label: 'Weaviate/Milvus (Self-Managed)',
+                    data: [5, 9, 7, 9],
+                    backgroundColor: colors.aqua,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { x: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const fineTuningRadarCtx = document.getElementById('fineTuningRadarChart').getContext('2d');
+        new Chart(fineTuningRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Ease of Use', 'Flexibility', 'Community Support', 'Direct Control'],
+                datasets: [{
+                    label: 'Hugging Face Transformers',
+                    data: [9, 7, 9, 6],
+                    fill: true,
+                    backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                    borderColor: colors.royalBlue,
+                    pointBackgroundColor: colors.royalBlue,
+                }, {
+                    label: 'PyTorch/TensorFlow (Direct)',
+                    data: [5, 9, 7, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { r: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const promptEngBarCtx = document.getElementById('promptEngBarChart').getContext('2d');
+        new Chart(promptEngBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Complexity', 'Modularity', 'Learning Curve', 'Flexibility'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'LangChain/LlamaIndex',
+                    data: [7, 9, 7, 8],
+                    backgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Custom Python Scripts',
+                    data: [9, 6, 5, 9],
+                    backgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { x: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const evaluationGuardrailsBarCtx = document.getElementById('evaluationGuardrailsBarChart').getContext('2d');
+        new Chart(evaluationGuardrailsBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Integration', 'Depth of Analysis', 'Automation', 'Human Oversight'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Cloud AI Toolkits',
+                    data: [9, 7, 8, 5],
+                    backgroundColor: colors.darkBlue,
+                }, {
+                    label: 'Specialized Fairness Tools',
+                    data: [6, 9, 7],
+                    backgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { y: { beginAtZero: true, max: 10 } }
+            }
+        });
+        
+        const mlopsRadarCtx = document.getElementById('mlopsRadarChart').getContext('2d');
+        new Chart(mlopsRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['ML-specific Features', 'Ease of Setup', 'Scalability', 'General CI/CD'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Kubeflow/MLflow',
+                    data: [9, 5, 8, 6],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }, {
+                    label: 'GitHub Actions/GitLab CI/CD',
+                    data: [6, 8, 7, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                    borderColor: colors.royalBlue,
+                    pointBackgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { r: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const iacOrchestrationBarCtx = document.getElementById('iacOrchestrationBarChart').getContext('2d');
+        new Chart(iacOrchestrationBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Cross-Cloud Comp.', 'Complexity', 'Flexibility'].map(l => wrapLabel(l, 16)),
+                datasets: [
+                    {
+                        label: 'Terraform',
+                        data: [9, 7, 8],
+                        backgroundColor: colors.lightBlue,
+                    },
+                    {
+                        label: 'Cloud-Native IaC',
+                        data: [6, 8, 7],
+                        backgroundColor: colors.royalBlue,
+                    },
+                    {
+                        label: 'Kubernetes',
+                        data: [8, 9, 9],
+                        backgroundColor: colors.darkBlue,
+                    },
+                    {
+                        label: 'Managed Container Services',
+                        data: [7, 6, 5],
+                        backgroundColor: colors.aqua,
+                    }
+                ]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { y: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const monitoringRadarCtx = document.getElementById('monitoringRadarChart').getContext('2d');
+        new Chart(monitoringRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Cost', 'Comprehensiveness', 'ML-specific Features', 'Ease of Setup'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Prometheus + Grafana',
+                    data: [8, 7, 6, 7],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                    borderColor: colors.darkBlue,
+                    pointBackgroundColor: colors.darkBlue,
+                }, {
+                    label: 'Datadog/Splunk',
+                    data: [3, 9, 7, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                    borderColor: colors.royalBlue,
+                    pointBackgroundColor: colors.royalBlue,
+                }, {
+                    label: 'Cloud-Native Monitoring',
+                    data: [6, 8, 7, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(76, 201, 240, 0.2)',
+                    borderColor: colors.lightBlue,
+                    pointBackgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Arize AI (ML-specific)',
+                    data: [4, 7, 9, 6],
+                    fill: true,
+                    backgroundColor: 'rgba(114, 239, 221, 0.2)',
+                    borderColor: colors.aqua,
+                    pointBackgroundColor: colors.aqua,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { r: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const responsibleAIBarCtx = document.getElementById('responsibleAIBarChart').getContext('2d');
+        new Chart(responsibleAIBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ease of Integration', 'Depth of Analysis', 'Reporting Capabilities'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Cloud Responsible AI Toolkits',
+                    data: [8, 7, 8],
+                    backgroundColor: colors.darkBlue,
+                }, {
+                    label: 'Specialized Fairness Tools',
+                    data: [6, 9, 7],
+                    backgroundColor: colors.royalBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { y: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        const securityGovernanceBarCtx = document.getElementById('securityGovernanceBarChart').getContext('2d');
+        new Chart(securityGovernanceBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Data Protection', 'Threat Detection', 'Access Control'].map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'DLP Solutions',
+                    data: [9, 7, 6],
+                    backgroundColor: colors.lightBlue,
+                }, {
+                    label: 'Vulnerability Scanners',
+                    data: [7, 9, 5],
+                    backgroundColor: colors.royalBlue,
+                }, {
+                    label: 'IAM Systems',
+                    data: [6, 5, 9],
+                    backgroundColor: colors.darkBlue,
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                },
+                scales: { y: { beginAtZero: true, max: 10 } }
+            }
+        });
+
+        // New Executive View Charts
+        const adoptionLineCtx = document.getElementById('adoptionLineChart').getContext('2d');
+        new Chart(adoptionLineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025'],
+                datasets: [{
+                    label: 'Companies Exploring/Implementing Gen AI (%)',
+                    data: [15, 22, 30, 40, 55, 68], // Updated dummy data
+                    borderColor: colors.royalBlue,
+                    backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: 'Percentage (%)'}
+                    }
+                },
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        const businessImpactsBarCtx = document.getElementById('businessImpactsBarChart').getContext('2d');
+        new Chart(businessImpactsBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Efficiency Gains', 'Innovation', 'Customer Experience', 'Revenue Growth', 'Cost Reduction'].map(l => wrapLabel(l, 18)),
+                datasets: [{
+                    label: 'Expected Impact (Score 1-10)',
+                    data: [9, 8.5, 8, 7.5, 7], // Dummy data
+                    backgroundColor: [colors.darkBlue, colors.royalBlue, colors.lightBlue, colors.aqua, '#A0C4FF'],
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: { display: true, text: 'Expected Impact Score'}
+                    }
+                },
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const adoptionHurdlesDonutCtx = document.getElementById('adoptionHurdlesDonutChart').getContext('2d');
+        new Chart(adoptionHurdlesDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Data Quality & Access', 'Talent Shortage', 'Regulatory Uncertainty', 'Integration Complexity', 'Cost of Implementation', 'Security Concerns'],
+                datasets: [{
+                    label: 'Hurdles to Adoption (%)',
+                    data: [25, 20, 15, 15, 13, 12], // Dummy data
+                    backgroundColor: [colors.darkBlue, colors.royalBlue, colors.lightBlue, colors.aqua, '#A0C4FF', '#FFD700'],
+                    borderColor: '#F7F7FF',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                ...defaultTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltipOptions.plugins,
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
