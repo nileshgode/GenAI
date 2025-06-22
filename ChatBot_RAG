@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Architecture of Enterprise AI with RAG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 350px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .kpi-value {
+            font-weight: 900;
+            color: #ef5675;
+        }
+        .flow-arrow {
+            position: relative;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #7a5195;
+        }
+        .flow-arrow-horizontal {
+            position: relative;
+            width: 30px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-arrow-horizontal::after {
+            content: '►';
+            font-size: 2rem;
+            color: #7a5195;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #003f5c;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-gradient-to-r from-[#003f5c] to-[#374c80] text-white text-center py-16 px-4">
+        <p class="text-sm md:text-md font-light max-w-4xl mx-auto mb-2">Author - Nilesh Gode - Manager Data Science</p>
+        <h1 class="text-4xl md:text-6xl font-black mb-4">The Architecture of Enterprise AI</h1>
+        <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">A Deep Dive into Retrieval-Augmented Generation (RAG) Chatbots</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+
+        <section id="introduction" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">What is RAG and Why Does It Matter?</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Retrieval-Augmented Generation (RAG) is a powerful AI framework that enhances Large Language Models (LLMs) by connecting them to an organization's private, up-to-date knowledge base. This overcomes the limitation of generic LLMs, which operate on static data, by enabling them to provide responses that are accurate, verifiable, and grounded in the most current, proprietary information.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">💰</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Cost-Effective</h3>
+                    <p class="text-gray-600">Avoids expensive retraining of LLMs by dynamically feeding them new information.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">🔄</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Always Current</h3>
+                    <p class="text-gray-600">Connects to live data sources, ensuring responses are never outdated.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">✅</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Reduces Hallucinations</h3>
+                    <p class="text-gray-600">Grounds answers in factual, retrieved data, dramatically increasing accuracy and trust.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">🛡️</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Enhances Privacy</h3>
+                    <p class="text-gray-600">Keeps sensitive data within a controlled environment, applying existing access controls.</p>
+                </div>
+                 <div class="card text-center">
+                    <div class="text-5xl mb-3">🔍</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Increases Control</h3>
+                    <p class="text-gray-600">Provides transparent source attribution, making outputs auditable and compliant.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">🎯</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Improves Relevance</h3>
+                    <p class="text-gray-600">Tailors responses to specific user needs by augmenting queries with context.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture-flow" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">The RAG Architectural Blueprint</h2>
+                <p class="text-lg text-gray-600">
+                    RAG operates through a sophisticated, two-stage process. The **Ingestion Stage** is an offline process that builds and maintains the knowledge base, while the **Inference Stage** is the real-time process that answers user queries. The quality of the ingestion stage directly dictates the performance of the inference stage.
+                </p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-center text-[#003f5c] mb-8">End-to-End RAG Process Flow</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <div class="border-2 border-dashed border-[#7a5195] rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-center text-[#7a5195] mb-6">Stage 1: Ingestion (Offline)</h4>
+                        <div class="flex flex-col items-center">
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">1. Create External Data</p>
+                                <p class="text-sm text-gray-500">Source data from Docs, DBs, APIs</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">2. Preprocess & Chunk</p>
+                                <p class="text-sm text-gray-500">Clean data and split into semantic chunks</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">3. Generate Embeddings</p>
+                                <p class="text-sm text-gray-500">Convert text chunks into numerical vectors</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center">
+                                <p class="font-bold text-lg">4. Index in Vector DB</p>
+                                <p class="text-sm text-gray-500">Store embeddings for fast retrieval</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-2 border-dashed border-[#ff764a] rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-center text-[#ff764a] mb-6">Stage 2: Inference (Online)</h4>
+                         <div class="flex flex-col items-center">
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">1. User Query</p>
+                                <p class="text-sm text-gray-500">User submits a question</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">2. Information <strong>Retrieval</strong></p>
+                                <p class="text-sm text-gray-500">Search Vector DB for relevant chunks</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center mb-4">
+                                <p class="font-bold text-lg">3. Prompt Augmentation</p>
+                                <p class="text-sm text-gray-500">Add retrieved context to user query</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="card w-full max-w-sm text-center">
+                                <p class="font-bold text-lg">4. Generate & Display</p>
+                                <p class="text-sm text-gray-500">LLM creates and shows cited answer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-2xl font-bold text-[#003f5c] mb-4">Detailed RAG Process: Steps & Key Tools</h3>
+                    <p class="text-lg text-gray-600">
+                        Understanding the specific tools and best practices that empower each stage of the RAG pipeline.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Stage 1: Ingestion Details -->
+                    <div class="lg:col-span-1">
+                        <h4 class="text-xl font-bold text-[#7a5195] mb-4">Stage 1: Ingestion (Offline Process)</h4>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">1. Defining Use Cases & Knowledge Base Scope</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Strategically align chatbot objectives, KPIs, and target audience to deliver business value. Identify relevant, accurate, and up-to-date external data sources.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> Miro, Figma, Google Docs.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Strategic alignment and clear objective setting.</p>
+                        </div>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">2. Data Collection & Preprocessing</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Gather data from diverse repositories (APIs, DBs, documents). Focus on data quality (cleaning, validation), handle unstructured data, implement privacy (encryption, de-identification), ensure consistency, and mitigate bias.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> SharePoint, Confluence, Google Drive (DMS); Python (Pandas), Apache Spark (ETL); AWS Textract, Google Cloud Document AI, Azure Form Recognizer (OCR).</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Handling diverse data, ensuring quality, managing privacy and security.</p>
+                        </div>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">3. Document Chunking & Embedding</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Divide long documents into semantic chunks. Optimize chunk size through experimentation. Convert chunks into numerical vectors (embeddings) using specialized models. Add metadata for enhanced <strong>retrieval</strong>.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> LangChain, LlamaIndex (chunking); OpenAI Embeddings, Vertex AI Embeddings, Hugging Face Sentence Transformers, Cohere Embeddings (embedding models).</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Efficiently preparing text for <strong>retrieval</strong> and semantic search.</p>
+                        </div>
+                        <div class="card">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">4. Vector Database Selection & Indexing</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Store generated embeddings in a specialized vector database optimized for similarity searches. Indexing facilitates efficient information <strong>retrieval</strong>.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> Pinecone, Weaviate, Milvus, Qdrant (dedicated); PostgreSQL with pgvector, Redis Stack (traditional DBs with vector search); AWS OpenSearch, Google Cloud Vertex AI Vector Search, Azure Cosmos DB for PostgreSQL, Azure AI Search (cloud-managed).</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Scalable and performant storage and <strong>retrieval</strong> of embeddings.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: Inference Details -->
+                    <div class="lg:col-span-1">
+                        <h4 class="text-xl font-bold text-[#ff764a] mb-4">Stage 2: Inference (Online/Runtime Process)</h4>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">1. User Query Processing</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Analyze user query intent. Potentially generate optimized search queries if needed. Convert query to vector. Validate input to prevent malicious attacks.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> Cohere Chat Endpoint (Query-generation mode).</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Understanding user intent and preparing queries for optimal <strong>retrieval</strong>.</p>
+                        </div>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">2. Information <strong>Retrieval</strong></h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Perform relevancy search (vector similarity, keyword search). Apply reranking. Implement security filtering and access control (RBAC). Structure context. Limit search to latest data versions.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Techniques:</span> Hybrid Search, Reranking, RBAC filtering.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Ensuring highly relevant, authorized, and fresh information is retrieved.</p>
+                        </div>
+                        <div class="card mb-6">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">3. Prompt Augmentation & LLM Integration</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: Augment user's prompt with retrieved data. Use prompt engineering. Select optimal LLM based on performance, cost, integration. Integrate <strong>retrieval</strong> and generative models.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Tools:</span> LangChain, LlamaIndex (frameworks); OpenAI (GPT-3.5, GPT-4), Google (Gemini, PaLM), Anthropic (Claude), Cohere, Mistral, Llama 2 (LLM Providers).</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Guiding the LLM and generating accurate, context-aware responses.</p>
+                        </div>
+                        <div class="card">
+                            <h5 class="font-bold text-md text-[#003f5c] mb-2">4. Response Generation & Display</h5>
+                            <p class="text-sm text-gray-600 mb-2">Process: LLM generates coherent response. Display with citations/source attribution. Implement output monitoring and robust error handling.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Preferred Practices:</span> Clear Citations, Output Monitoring, Robust Error Handling.</p>
+                            <p class="text-xs text-gray-500"><span class="font-semibold">Best Work For:</span> Delivering trustworthy, verifiable, and user-friendly AI outputs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-gray-600">
+                        <span class="font-semibold">Overall Frameworks:</span> LangChain, LlamaIndex are comprehensive solutions that simplify RAG pipeline development.
+                        <br><span class="font-semibold">Cloud-Native Options:</span> Google Cloud Vertex AI, Azure AI for integrated RAG solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="investment-effort" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">Building the Knowledge Core: Effort Distribution</h2>
+                <p class="text-lg text-gray-600">
+                    The success of a RAG system heavily depends on the quality of its knowledge base. The ingestion stage requires significant effort, particularly in data collection, cleaning, and ensuring security, which often outweighs the effort spent on the modeling itself.
+                </p>
+            </div>
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="effortChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">Navigating the Hurdles</h2>
+                <p class="text-lg text-gray-600">
+                    Implementing a RAG system involves overcoming challenges across data management, security protocols, and model integration. Data-related issues, such as quality and freshness, represent the most significant hurdle, followed closely by security and privacy concerns.
+                </p>
+            </div>
+            <div class="card">
+                 <div class="chart-container mb-4">
+                    <canvas id="challengesChart"></canvas>
+                </div>
+                <div class="flex justify-center">
+                    <button id="suggestSolutionsBtn" class="bg-[#003f5c] hover:bg-[#002f4a] text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        ✨ Suggest Solutions for Challenges
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">The Business Impact: Quantifiable Benefits</h2>
+                <p class="text-lg text-gray-600">
+                    RAG chatbots deliver tangible results by enhancing operational efficiency, improving accuracy, and ensuring robust data governance. This trifecta of benefits drives significant business value and a strong return on investment.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card text-center p-8">
+                    <p class="text-lg text-gray-500 mb-2">Median Time to Resolve Issues</p>
+                    <p class="text-7xl kpi-value">-28.6%</p>
+                    <p class="mt-4 text-gray-600">RAG empowers support agents to find information faster, drastically cutting down resolution times and improving customer satisfaction.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-center text-[#003f5c] mb-4">Distribution of RAG Benefits</h3>
+                    <div class="chart-container" style="height:300px;">
+                        <canvas id="benefitsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="user-impact" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">User Impact & Adoption: RAG in Action</h2>
+                <p class="text-lg text-gray-600">
+                    RAG chatbots directly translate into improved user experiences and tangible benefits for both customers and internal employees. Their ability to provide accurate, relevant, and timely information drives higher satisfaction and productivity.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">💬</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Customer Service Excellence</h3>
+                    <p class="text-gray-600 mb-2">Up to <span class="font-bold text-[#ef5675]">80%</span> of routine inquiries handled automatically.</p>
+                    <p class="text-gray-600 text-sm">Significantly reduced wait times, leading to improved customer satisfaction.</p>
+                    <p class="text-gray-600 text-sm mt-1">First-Time Resolution rates boosted (e.g., Vodafone: 15% to <span class="font-bold text-[#ef5675]">60%</span>).</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">🚀</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Enhanced Employee Productivity</h3>
+                    <p class="text-gray-600 mb-2">Faster access to critical information across departments (HR, IT, Sales, Engineering).</p>
+                    <p class="text-gray-600 text-sm">Simplified onboarding processes for new hires, saving significant time.</p>
+                    <p class="text-gray-600 text-sm mt-1">Allows employees to focus on strategic tasks rather than information searching.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">🤝</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Increased User Trust & Adoption</h3>
+                    <p class="text-gray-600 mb-2">High user confidence due to factual grounding and transparent source attribution.</p>
+                    <p class="text-gray-600 text-sm">Personalized interactions foster stronger relationships and loyalty.</p>
+                    <p class="text-gray-600 text-sm mt-1">Positive correlation between usage and adoption rates, reflecting perceived value.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">💡</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Empowered Self-Service</h3>
+                    <p class="text-gray-600">Users can resolve queries independently, reducing reliance on human support and improving efficiency.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">📈</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Improved Decision-Making</h3>
+                    <p class="text-gray-600">Rapid access to accurate and current data enables quicker, more informed business decisions.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-5xl mb-3">📚</div>
+                    <h3 class="text-xl font-bold text-[#003f5c] mb-2">Enhanced Learning & Skill Development</h3>
+                    <p class="text-gray-600">Employees can quickly learn new information and troubleshoot issues, continuously improving their capabilities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="evaluation" class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">Ensuring Peak Performance Through Evaluation</h2>
+                <p class="text-lg text-gray-600">
+                    Continuous evaluation is vital. Performance is measured across two domains: **Retrieval** (how well the system finds information) and **Generation** (how well the LLM uses that information). Balancing these metrics is key to a reliable and effective chatbot.
+                </p>
+            </div>
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="evaluationChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003f5c] text-white text-center py-8">
+        <p class="font-bold">RAG: The Foundation for Trustworthy Enterprise AI</p>
+        <p class="text-sm opacity-80 mt-2">Transforming generic models into specialized, reliable, and compliant organizational assets.</p>
+        <p class="text-sm md:text-md font-light max-w-4xl mx-auto mt-4">Author - Nilesh Gode - Manager Data Science</p>
+    </footer>
+
+    <!-- Solutions Modal -->
+    <div id="solutionsModal" class="fixed inset-0 hidden modal z-50">
+        <div class="modal-content w-full md:max-w-xl lg:max-w-2xl">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold leading-none">&times;</button>
+            <h3 id="modalTitle" class="text-2xl font-bold text-[#003f5c] mb-4">Solutions for Challenges</h3>
+            <div id="modalLoading" class="flex justify-center items-center py-8 hidden">
+                <div class="spinner"></div>
+            </div>
+            <div id="modalContent" class="text-gray-700 leading-relaxed"></div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const FONT_COLOR = '#003f5c';
+    const GRID_COLOR = '#e0e6f0';
+    const BRILLIANT_BLUES = ['#003f5c', '#7a5195', '#ef5675', '#ff764a', '#ffa600'];
+    const CHART_COLORS = {
+        primary: BRILLIANT_BLUES[0],
+        secondary: BRILLIANT_BLUES[1],
+        accent1: BRILLIANT_BLUES[2],
+        accent2: BRILLIANT_BLUES[3],
+        accent3: BRILLIANT_BLUES[4],
+    };
+    
+    function wrapLabels(label, maxWidth) {
+        if (typeof label !== 'string' || label.length <= maxWidth) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine.length > 0) {
+            lines.push(currentLine);
+        }
+        return lines;
+    }
+
+    const defaultTooltipCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        }
+                        return label;
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    color: FONT_COLOR,
+                    font: {
+                        size: 14
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR }
+            },
+            x: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR }
+            }
+        },
+        maintainAspectRatio: false
+    };
+
+    const effortData = {
+        labels: ['Defining Use Cases', 'Data Collection & Preprocessing', 'Document Chunking & Embedding', 'Vector DB Selection & Indexing'],
+        datasets: [{
+            label: 'Relative Effort Investment (%)',
+            data: [15, 45, 25, 15],
+            backgroundColor: [CHART_COLORS.primary, CHART_COLORS.accent2, CHART_COLORS.accent3, CHART_COLORS.secondary],
+            borderColor: '#ffffff',
+            borderWidth: 2
+        }]
+    };
+    const effortCtx = document.getElementById('effortChart')?.getContext('2d');
+    if (effortCtx) {
+        new Chart(effortCtx, {
+            type: 'bar',
+            data: effortData,
+            options: { ...defaultTooltipCallback, indexAxis: 'y' }
+        });
+    }
+
+    const challengesData = {
+        labels: ['Data-Related', 'Security & Privacy', 'Model & Integration'],
+        datasets: [{
+            label: 'Impact Score',
+            data: [85, 70, 55],
+            backgroundColor: [CHART_COLORS.accent1, CHART_COLORS.accent3, CHART_COLORS.primary],
+            borderColor: '#ffffff',
+            borderWidth: 2,
+        }]
+    };
+    const challengesCtx = document.getElementById('challengesChart')?.getContext('2d');
+    if (challengesCtx) {
+        new Chart(challengesCtx, {
+            type: 'bar',
+            data: challengesData,
+            options: defaultTooltipCallback
+        });
+    }
+
+    const benefitsData = {
+        labels: ['Operational Efficiency', 'Accuracy & Trust', 'Compliance & Governance'],
+        datasets: [{
+            data: [45, 35, 20],
+            backgroundColor: [CHART_COLORS.primary, CHART_COLORS.accent1, CHART_COLORS.accent3],
+            hoverOffset: 4
+        }]
+    };
+    const benefitsCtx = document.getElementById('benefitsChart')?.getContext('2d');
+    if (benefitsCtx) {
+        new Chart(benefitsCtx, {
+            type: 'doughnut',
+            data: benefitsData,
+            options: {
+                ...defaultTooltipCallback,
+                plugins: { ...defaultTooltipCallback.plugins, legend: { position: 'bottom' } }
+            }
+        });
+    }
+    
+    const evaluationData = {
+        labels: [
+            wrapLabels('Context Relevance', 16),
+            wrapLabels('Context Sufficiency', 16),
+            wrapLabels('Retrieval Precision', 16),
+            wrapLabels('Answer Relevance', 16),
+            wrapLabels('Answer Correctness', 16),
+            wrapLabels('Answer Hallucination (Lower is Better)', 16)
+        ],
+        datasets: [{
+            label: 'Ideal System',
+            data: [95, 90, 95, 95, 98, 5],
+            fill: true,
+            backgroundColor: 'rgba(0, 63, 92, 0.2)',
+            borderColor: CHART_COLORS.primary,
+            pointBackgroundColor: CHART_COLORS.primary,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: CHART_COLORS.primary
+        }, {
+            label: 'Actual System (Example)',
+            data: [85, 75, 80, 90, 88, 15],
+            fill: true,
+            backgroundColor: 'rgba(239, 86, 117, 0.2)',
+            borderColor: CHART_COLORS.accent1,
+            pointBackgroundColor: CHART_COLORS.accent1,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: CHART_COLORS.accent1
+        }]
+    };
+    const evaluationCtx = document.getElementById('evaluationChart')?.getContext('2d');
+    if (evaluationCtx) {
+        new Chart(evaluationCtx, {
+            type: 'radar',
+            data: evaluationData,
+            options: {
+                 ...defaultTooltipCallback,
+                 scales: {
+                    r: {
+                        angleLines: { color: GRID_COLOR },
+                        grid: { color: GRID_COLOR },
+                        pointLabels: {
+                           font: { size: 12 },
+                           color: FONT_COLOR
+                        },
+                        ticks: {
+                           color: FONT_COLOR,
+                           backdropColor: 'rgba(255, 255, 255, 0.75)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Gemini API Integration
+    const solutionsModal = document.getElementById('solutionsModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const modalLoading = document.getElementById('modalLoading');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const suggestSolutionsBtn = document.getElementById('suggestSolutionsBtn');
+
+    function openModal(title, content) {
+        modalTitle.textContent = title;
+        modalContent.innerHTML = content;
+        solutionsModal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        solutionsModal.classList.add('hidden');
+        modalContent.innerHTML = '';
+        modalLoading.classList.add('hidden');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    suggestSolutionsBtn.addEventListener('click', async () => {
+        const challenges = challengesData.labels;
+        let allSolutionsHtml = '<h3 class="text-xl font-bold text-[#003f5c] mb-4">Suggested Solutions for RAG Challenges</h3>';
+        
+        openModal("Generating Solutions...", '<div class="flex justify-center items-center py-8"><div class="spinner"></div></div>');
+        modalLoading.classList.remove('hidden');
+        modalContent.classList.add('hidden');
+
+        try {
+            for (const challenge of challenges) {
+                const prompt = `Suggest concrete solutions for the challenge of "${challenge}" when building a Retrieval-Augmented Generation (RAG) chatbot for an organization. Provide the response as a bulleted list of actionable steps.`;
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    allSolutionsHtml += `<h4 class="text-lg font-semibold text-[#7a5195] mt-6 mb-2">For "${challenge}":</h4>`;
+                    allSolutionsHtml += `<div class="bg-gray-50 p-4 rounded-md">${text}</div>`;
+                } else {
+                    allSolutionsHtml += `<p class="text-red-500">Could not retrieve solutions for "${challenge}".</p>`;
+                }
+            }
+            modalLoading.classList.add('hidden');
+            modalContent.classList.remove('hidden');
+            openModal("Suggested Solutions for RAG Challenges", allSolutionsHtml);
+
+        } catch (error) {
+            console.error('Error fetching solutions:', error);
+            modalLoading.classList.add('hidden');
+            modalContent.classList.remove('hidden');
+            openModal("Error", '<p class="text-red-500">Failed to fetch solutions. Please try again later.</p>');
+        }
+    });
+});
+</script>
+</body>
+</html>
